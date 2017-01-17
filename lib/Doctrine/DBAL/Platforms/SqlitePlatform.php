@@ -133,7 +133,7 @@ class SqlitePlatform extends AbstractPlatform
             case self::DATE_INTERVAL_UNIT_SECOND:
             case self::DATE_INTERVAL_UNIT_MINUTE:
             case self::DATE_INTERVAL_UNIT_HOUR:
-                return "DATETIME(" . $date . ",'" . $operator . $interval . " " . $unit . "')";
+                return "DATETIME(" . $date . ", '" . $operator . "' || (" . $interval . ") || ' " . $unit . "')";
 
             default:
                 switch ($unit) {
@@ -148,7 +148,7 @@ class SqlitePlatform extends AbstractPlatform
                         break;
                 }
 
-                return "DATE(" . $date . ",'" . $operator . $interval . " " . $unit . "')";
+                return "DATE(" . $date . ", '" . $operator . "' || (" . $interval . ") || ' " . $unit . "')";
         }
     }
 
